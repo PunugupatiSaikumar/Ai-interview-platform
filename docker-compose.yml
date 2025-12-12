@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: interview_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: interview_platform
+      MYSQL_USER: interview_user
+      MYSQL_PASSWORD: interview_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - interview_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: interview_backend
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: interview_user
+      DB_PASSWORD: interview_password
+      DB_NAME: interview_platform
+      FRONTEND_URL: http://localhost:3001
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      SESSION_SECRET: ${SESSION_SECRET:-your-session-secret-change-in-production}
+    ports:
+      - "5001:5000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend/logs:/app/logs
+    networks:
+      - interview_network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: interview_frontend
+    environment:
+      REACT_APP_API_URL: http://localhost:5001/api
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+    networks:
+      - interview_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
+networks:
+  interview_network:
+    driver: bridge
+
