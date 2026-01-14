@@ -28,7 +28,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import api from '../services/api';
 
-const COLORS = ['#6366f1', '#ec4899', '#f59e0b', '#10b981'];
+const COLORS = ['#0f172a', '#0891b2', '#2563eb', '#059669'];
 
 const Analytics = () => {
   const [overview, setOverview] = useState(null);
@@ -71,8 +71,9 @@ const Analytics = () => {
                     <Card 
                       sx={{ 
                         height: '100%',
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                         color: 'white',
+                        border: '1px solid rgba(255,255,255,0.1)',
                       }}
                     >
                       <CardContent>
@@ -94,8 +95,9 @@ const Analytics = () => {
                     <Card 
                       sx={{ 
                         height: '100%',
-                        background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                        background: 'linear-gradient(135deg, #0891b2 0%, #0e7490 100%)',
                         color: 'white',
+                        border: '1px solid rgba(255,255,255,0.1)',
                       }}
                     >
                       <CardContent>
@@ -161,7 +163,7 @@ const Analytics = () => {
                             <Legend />
                             <Bar 
                               dataKey="avg_score" 
-                              fill="#6366f1" 
+                              fill="#0f172a" 
                               name="Avg Score"
                               radius={[8, 8, 0, 0]}
                             />
@@ -196,7 +198,7 @@ const Analytics = () => {
                               labelLine={false}
                               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                               outerRadius={100}
-                              fill="#6366f1"
+                              fill="#0f172a"
                               dataKey="total"
                             >
                               {typeStats.map((entry, index) => (

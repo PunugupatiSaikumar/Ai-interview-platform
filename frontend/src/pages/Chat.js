@@ -233,7 +233,7 @@ const Chat = () => {
             onClick={handleGenerateQuestion} 
             disabled={loading}
             sx={{
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
               '&:hover': {
                 background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
                 transform: 'translateY(-2px)',
@@ -439,7 +439,7 @@ const Chat = () => {
                 onClick={handleSend}
                 disabled={loading || !input.trim()}
                 sx={{
-                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                   '&:hover': {
                     background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
                     transform: 'scale(1.1)',

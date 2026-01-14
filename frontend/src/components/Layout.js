@@ -46,7 +46,8 @@ const Layout = () => {
         elevation={0}
         sx={{ 
           bgcolor: 'primary.main',
-          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <Toolbar sx={{ py: 1 }}>
@@ -57,7 +58,7 @@ const Layout = () => {
             <Chip
               avatar={<Avatar sx={{ bgcolor: 'secondary.main' }}>{user?.name?.charAt(0).toUpperCase()}</Avatar>}
               label={user?.name}
-              sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white', fontWeight: 500 }}
+              sx={{ bgcolor: 'rgba(255,255,255,0.15)', color: 'white', fontWeight: 500, border: '1px solid rgba(255,255,255,0.2)' }}
             />
             <Tooltip title="Logout">
               <IconButton 
@@ -83,8 +84,14 @@ const Layout = () => {
             '& .MuiTab-root': {
               minHeight: 64,
               fontWeight: 500,
+              color: 'rgba(255,255,255,0.8)',
               '&:hover': {
                 bgcolor: 'rgba(255,255,255,0.05)',
+                color: 'white',
+              },
+              '&.Mui-selected': {
+                color: 'white',
+                fontWeight: 600,
               },
             },
           }}

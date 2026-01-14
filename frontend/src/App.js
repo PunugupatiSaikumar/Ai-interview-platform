@@ -6,6 +6,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AuthCallback from './pages/AuthCallback';
 import Dashboard from './pages/Dashboard';
 import Chat from './pages/Chat';
 import History from './pages/History';
@@ -15,22 +16,34 @@ import Layout from './components/Layout';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#6366f1', // Modern indigo
-      light: '#818cf8',
-      dark: '#4f46e5',
+      main: '#0f172a', // Deep navy - professional and trustworthy
+      light: '#1e293b',
+      dark: '#020617',
+      contrastText: '#ffffff',
     },
     secondary: {
-      main: '#ec4899', // Modern pink
-      light: '#f472b6',
-      dark: '#db2777',
+      main: '#0891b2', // Professional teal - modern and tech-forward
+      light: '#06b6d4',
+      dark: '#0e7490',
+      contrastText: '#ffffff',
+    },
+    info: {
+      main: '#2563eb', // Professional blue for accents
+      light: '#3b82f6',
+      dark: '#1d4ed8',
+    },
+    success: {
+      main: '#059669', // Professional green
+      light: '#10b981',
+      dark: '#047857',
     },
     background: {
-      default: '#f8fafc',
+      default: '#f8fafc', // Clean light gray
       paper: '#ffffff',
     },
     text: {
-      primary: '#1e293b',
-      secondary: '#64748b',
+      primary: '#0f172a', // Deep navy for high contrast
+      secondary: '#475569', // Medium gray for secondary text
     },
   },
   typography: {
@@ -80,6 +93,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             <Route
               path="/"
               element={

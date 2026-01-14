@@ -97,8 +97,9 @@ const Dashboard = () => {
                   <Card 
                     sx={{ 
                       height: '100%',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                       color: 'white',
+                      border: '1px solid rgba(255,255,255,0.1)',
                     }}
                   >
                     <CardContent>
@@ -125,8 +126,9 @@ const Dashboard = () => {
                   <Card 
                     sx={{ 
                       height: '100%',
-                      background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                      background: 'linear-gradient(135deg, #0891b2 0%, #0e7490 100%)',
                       color: 'white',
+                      border: '1px solid rgba(255,255,255,0.1)',
                     }}
                   >
                     <CardContent>
@@ -185,7 +187,7 @@ const Dashboard = () => {
               sx={{ 
                 p: 4, 
                 borderRadius: 3,
-                background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+                background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(8, 145, 178, 0.05) 100%)',
                 border: '1px solid',
                 borderColor: 'divider',
               }}
@@ -287,7 +289,7 @@ const Dashboard = () => {
                   px: 4,
                   fontSize: '1.1rem',
                   fontWeight: 600,
-                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                   '&:hover': {
                     background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
                     transform: 'translateY(-2px)',

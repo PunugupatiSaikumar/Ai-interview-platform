@@ -40,8 +40,8 @@ const Register = () => {
   };
 
   const handleGoogleSignup = () => {
-    // Placeholder for Google OAuth integration
-    alert('Google signup coming soon!');
+    const apiUrl = process.env.REACT_APP_API_URL || '/api';
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   return (
@@ -150,10 +150,10 @@ const Register = () => {
                     borderColor: '#e0e0e0',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                     borderWidth: 2,
                   },
                 },
@@ -175,10 +175,10 @@ const Register = () => {
                     borderColor: '#e0e0e0',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                     borderWidth: 2,
                   },
                 },
@@ -200,10 +200,10 @@ const Register = () => {
                     borderColor: '#e0e0e0',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#6366f1',
+                    borderColor: 'primary.main',
                     borderWidth: 2,
                   },
                 },
@@ -218,13 +218,13 @@ const Register = () => {
               sx={{
                 py: 1.5,
                 mb: 4,
-                bgcolor: '#6366f1',
+                bgcolor: 'primary.main',
                 borderRadius: 2,
                 fontWeight: 600,
                 textTransform: 'none',
                 fontSize: '1rem',
                 '&:hover': {
-                  bgcolor: '#4f46e5',
+                  bgcolor: 'primary.dark',
                 },
               }}
             >
@@ -245,7 +245,7 @@ const Register = () => {
             By proceeding, you agree to the{' '}
             <Link
               to="#"
-              style={{ color: '#6366f1', textDecoration: 'none' }}
+              style={{ color: '#0f172a', textDecoration: 'none' }}
               onClick={(e) => {
                 e.preventDefault();
                 alert('Terms of Service');
@@ -256,7 +256,7 @@ const Register = () => {
             and{' '}
             <Link
               to="#"
-              style={{ color: '#6366f1', textDecoration: 'none' }}
+              style={{ color: '#0f172a', textDecoration: 'none' }}
               onClick={(e) => {
                 e.preventDefault();
                 alert('Privacy Policy');
@@ -274,7 +274,7 @@ const Register = () => {
               <Link
                 to="/login"
                 style={{
-                  color: '#6366f1',
+                  color: 'primary.main',
                   textDecoration: 'none',
                   fontWeight: 500,
                 }}

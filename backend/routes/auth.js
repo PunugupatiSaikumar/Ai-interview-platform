@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { authenticate } = require('../middleware/auth');
@@ -66,6 +67,11 @@ router.post('/login', [
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    // Check if user signed up with Google OAuth (no password)
+    if (!user.password_hash) {
+      return res.status(401).json({ error: 'This account was created with Google. Please sign in with Google.' });
+    }
+
     const isValid = await User.verifyPassword(password, user.password_hash);
     if (!isValid) {
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -104,6 +110,35 @@ router.post('/logout', authenticate, (req, res) => {
   req.session.destroy();
   res.json({ message: 'Logged out successfully' });
 });
+
+// Google OAuth Routes
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get('/google/callback',
+  passport.authenticate('google', { session: false, failureRedirect: '/login' }),
+  async (req, res) => {
+    try {
+      const user = req.user;
+      
+      // Generate JWT token
+      const token = jwt.sign(
+        { userId: user.id },
+        process.env.JWT_SECRET || 'your-secret-key',
+        { expiresIn: '7d' }
+      );
+
+      // Redirect to frontend with token
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
+      res.redirect(`${frontendUrl}/auth/callback?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
+    } catch (error) {
+      logger.error('Google OAuth callback error:', error);
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
+      res.redirect(`${frontendUrl}/login?error=oauth_failed`);
+    }
+  }
+);
 
 module.exports = router;
 
