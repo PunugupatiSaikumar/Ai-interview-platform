@@ -4,7 +4,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const session = require('express-session');
-const passport = require('passport');
 const logger = require('./utils/logger');
 
 const app = express();
@@ -71,11 +70,6 @@ app.use(session({
   saveUninitialized: false,
   cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true }
 }));
-
-// Passport configuration
-require('./config/passport');
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Routes
 const authRoutes = require('./routes/auth');

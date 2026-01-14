@@ -10,7 +10,6 @@ import {
   Divider,
   CircularProgress,
 } from '@mui/material';
-import GoogleIcon from '@mui/icons-material/Google';
 import Logo from '../components/Logo';
 import AIBackground from '../components/AIBackground';
 import { useAuth } from '../contexts/AuthContext';
@@ -38,10 +37,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    const apiUrl = process.env.REACT_APP_API_URL || '/api';
-    window.location.href = `${apiUrl}/auth/google`;
-  };
 
   return (
     <Box
@@ -99,38 +94,6 @@ const Login = () => {
               {error}
             </Alert>
           )}
-
-          {/* Google Login Button */}
-          <Button
-            fullWidth
-            variant="outlined"
-            size="large"
-            onClick={handleGoogleLogin}
-            startIcon={<GoogleIcon />}
-            sx={{
-              mb: 3,
-              py: 1.5,
-              borderColor: '#e0e0e0',
-              color: 'text.primary',
-              fontWeight: 500,
-              textTransform: 'none',
-              '&:hover': {
-                borderColor: '#bdbdbd',
-                bgcolor: '#fafafa',
-              },
-            }}
-          >
-            Continue with Google
-          </Button>
-
-          {/* Divider */}
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 3 }}>
-            <Divider sx={{ flex: 1 }} />
-            <Typography variant="body2" sx={{ px: 2, color: 'text.secondary' }}>
-              Or
-            </Typography>
-            <Divider sx={{ flex: 1 }} />
-          </Box>
 
           {/* Email Login Form */}
           <form onSubmit={handleSubmit} style={{ width: '100%' }}>

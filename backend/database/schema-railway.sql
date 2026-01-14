@@ -1,6 +1,4 @@
--- Create database
-CREATE DATABASE IF NOT EXISTS interview_platform;
-USE interview_platform;
+-- Railway MySQL Schema (Database already exists, skip CREATE DATABASE)
 
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
@@ -58,4 +56,3 @@ CREATE TABLE IF NOT EXISTS performance_analytics (
     UNIQUE KEY unique_user_date (user_id, date),
     INDEX idx_user_date (user_id, date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

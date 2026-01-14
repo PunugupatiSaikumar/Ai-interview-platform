@@ -53,9 +53,6 @@ git push -u origin main
    GEMINI_API_KEY=AIza...
    JWT_SECRET=random-secret-key
    SESSION_SECRET=random-session-secret
-   GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
-   GOOGLE_CLIENT_SECRET=your-google-client-secret
-   GOOGLE_CALLBACK_URL=https://your-backend.railway.app/api/auth/google/callback
    ```
 6. Deploy → Copy the URL (e.g., `https://your-app.railway.app`)
 
@@ -117,35 +114,6 @@ Your app is now live at: `https://your-app.vercel.app`
 - ✅ GEMINI_API_KEY
 - ✅ JWT_SECRET
 - ✅ SESSION_SECRET
-- ✅ GOOGLE_CLIENT_ID (for Google OAuth)
-- ✅ GOOGLE_CLIENT_SECRET (for Google OAuth)
-- ✅ GOOGLE_CALLBACK_URL (your backend URL + /api/auth/google/callback)
-
-## 🔐 Setting Up Google OAuth (Optional)
-
-To enable Google login/signup:
-
-1. **Create Google OAuth Credentials:**
-   - Go to https://console.cloud.google.com/
-   - Create a new project or select existing
-   - Enable Google+ API
-   - Go to "Credentials" → "Create Credentials" → "OAuth client ID"
-   - Application type: "Web application"
-   - Authorized redirect URIs: `https://your-backend.railway.app/api/auth/google/callback`
-   - Copy Client ID and Client Secret
-
-2. **Add to Railway Environment Variables:**
-   - `GOOGLE_CLIENT_ID`: Your Google Client ID
-   - `GOOGLE_CLIENT_SECRET`: Your Google Client Secret
-   - `GOOGLE_CALLBACK_URL`: `https://your-backend.railway.app/api/auth/google/callback`
-
-3. **Update Database Schema:**
-   - Run the updated `backend/database/schema.sql` to add Google OAuth support
-   - Or manually add: `ALTER TABLE users ADD COLUMN google_id VARCHAR(255) NULL, ADD COLUMN avatar_url VARCHAR(500) NULL;`
-   - Make password_hash nullable: `ALTER TABLE users MODIFY password_hash VARCHAR(255) NULL;`
-
-4. **Redeploy Backend:**
-   - Railway will automatically redeploy when you update environment variables
 
 ## 🆘 Need Help?
 
